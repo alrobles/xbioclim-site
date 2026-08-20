@@ -1,0 +1,9 @@
+services:
+  xbioclim-site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: xbioclim-site
+    ports:
+      - "127.0.0.1:8660:80"
+    restart: unless-stopped
