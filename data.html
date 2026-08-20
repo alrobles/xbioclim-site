@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data — Bioclim</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div id="toast" class="toast">Copied</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand"><img src="/ecoseek-logo.svg" alt="Bioclim"><span>Bioclim</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/data.html" class="active">Data</a>
+      <a href="/docs.html">Documentation</a>
+      <a href="/contact.html">Contact</a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">◐</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="section-head">Data</div>
+  <h2 class="section-title">Bioclimatic variables from ERA5-Land</h2>
+  <div class="card">
+    <p>The 19 WorldClim-standard bioclimatic indices computed from ERA5-Land reanalysis (hourly, 0.1°, global). Each variable is available for every year 1980–2020 as a compressed, tiled GeoTIFF.</p>
+  </div>
+  <div class="card">
+    <h3>🌡️ Temperature variables (BIO01–BIO11)</h3>
+    <div class="var-grid" id="tempVars"></div>
+  </div>
+  <div class="card">
+    <h3>🌧️ Precipitation variables (BIO12–BIO19)</h3>
+    <div class="var-grid" id="precipVars"></div>
+  </div>
+
+  <div class="card">
+    <h3>Browse &amp; download GeoTIFFs</h3>
+    <div class="quick-row">
+      <input type="number" class="year-input" id="yearInput" placeholder="Year">
+      <button class="btn btn-primary" onclick="goToYear()">Browse Year →</button>
+    </div>
+    <div class="dataset-toggle" role="group" aria-label="Dataset resolution">
+      <button class="dataset-btn dataset-btn-active" id="ds9" onclick="setDataset('9km')">9 km · global</button>
+      <button class="dataset-btn" id="ds1" onclick="setDataset('1km')">1 km · CONUS</button>
+    </div>
+    <div style="margin-top:1.5rem">
+      <h3>Batch download</h3>
+      <div class="range-row"><label>From</label><input type="range" id="rangeStart" min="1980" max="2020" value="1980" oninput="updateRange()"><span class="range-val" id="startVal">1980</span></div>
+      <div class="range-row"><label>To</label><input type="range" id="rangeEnd" min="1980" max="2020" value="2020" oninput="updateRange()"><span class="range-val" id="endVal">2020</span></div>
+      <div class="range-meta"><span id="fileCount">779</span> files · <span id="yearCount">41</span> years × 19 variables</div>
+      <div class="terminal"><div class="terminal-cmd" id="curlCmd"></div></div>
+      <div class="range-actions">
+        <button class="btn btn-primary" onclick="copyCurl()">Copy</button>
+        <button class="btn btn-outline" onclick="downloadScript('bash')">Download .sh</button>
+        <button class="btn btn-ghost" onclick="downloadScript('urls')">URL list</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <a href="https://cds.climate.copernicus.eu">ERA5-Land</a> ·
+  <a href="https://github.com/alrobles/xbioclim-site">GitHub</a>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

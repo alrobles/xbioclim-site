@@ -1,17 +1,20 @@
-# 🌍 EcoSeek Bioclim — Site
+# Bioclim — Site
 
-Institutional single-page site for EcoSeek Bioclim, the ERA5-Land bioclimatic
-variable service. Served as **static files via Docker + nginx** at
-`https://xbioclim.org`; the REST API and GeoTIFF downloads live on
-`https://data.xbioclim.org` (see `alrobles/ecoseek-bioclim`).
+Institutional multi-page static site for Bioclim, the ERA5-Land bioclimatic
+variable service. Served via **Docker + nginx** at `https://xbioclim.org`;
+the REST API and GeoTIFF downloads live on `https://data.xbioclim.org`
+(see `alrobles/ecoseek-bioclim`).
 
-## Stack
+## Structure
 
-- `index.html` — one-pager: Hero · Data · Download · Documentation · Contact
-- `app.js` — frontend logic, talks to the REST API at `https://data.xbioclim.org`
-- `ecoseek-logo.svg` / `favicon.svg` — brand assets (shared with ecoSeek)
-- `Dockerfile` + `nginx.conf` — static server, gzip, no-cache for assets
-- `docker-compose.yml` — container `xbioclim-site` on `127.0.0.1:8660`
+- `index.html` — landing / hero
+- `data.html` — variables, browse & batch download
+- `docs.html` — REST API endpoints & client examples
+- `contact.html` — project links
+- `app.js` — frontend logic, talks to `https://data.xbioclim.org`
+- `style.css` — shared styles (dark-mode toggle)
+- `Dockerfile` + `nginx.conf` — static server (gzip, no-cache)
+- `docker-compose.yml` — container on `127.0.0.1:8660`
 
 ## Deploy
 
@@ -40,4 +43,4 @@ DNS: CNAME `xbioclim.org` → `154c1f8f-ad87-4dbe-b949-cf8a067dd4f9.cfargotunnel
 
 ## License
 
-Code MIT · Data © Copernicus (ERA5-Land) · Part of the EcoSeek ecosystem by alrobles.
+Code MIT · Data © Copernicus (ERA5-Land) · by alrobles.

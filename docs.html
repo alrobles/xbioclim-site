@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation — Bioclim</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div id="toast" class="toast">Copied</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand"><img src="/ecoseek-logo.svg" alt="Bioclim"><span>Bioclim</span></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/data.html">Data</a>
+      <a href="/docs.html" class="active">Documentation</a>
+      <a href="/contact.html">Contact</a>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">◐</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="section-head">Documentation</div>
+  <h2 class="section-title">REST API &amp; clients</h2>
+  <div class="card">
+    <h3>API endpoints</h3>
+    <div class="api-endpoint"><span class="m">GET</span><span class="ep">/api/years</span></div>
+    <div class="api-endpoint"><span class="m">GET</span><span class="ep">/api/variables</span></div>
+    <div class="api-endpoint"><span class="m">GET</span><span class="ep">/api/summary</span></div>
+    <div class="api-endpoint"><span class="m">GET</span><span class="ep">/api/download/{year}/{file}?dataset=9km|1km</span></div>
+    <div class="api-endpoint"><span class="m">GET</span><span class="ep">/api/scripts?start=X&amp;end=Y&amp;fmt=bash|urls</span></div>
+    <div style="margin-top:1rem;font-size:0.85rem;color:var(--text-muted)">Base URL: <code>https://data.xbioclim.org</code></div>
+  </div>
+  <div class="card">
+    <div class="client-tabs">
+      <button class="client-tab client-tab-active" id="tabPython" onclick="showClient('python')">Python</button>
+      <button class="client-tab" id="tabR" onclick="showClient('r')">R</button>
+      <button class="client-tab" id="tabCurl" onclick="showClient('curl')">curl</button>
+    </div>
+    <pre class="code" id="clientCode"></pre>
+    <button class="btn btn-ghost copy-btn" onclick="copyClient()">Copy snippet</button>
+  </div>
+</div>
+
+<div class="footer">
+  <a href="https://cds.climate.copernicus.eu">ERA5-Land</a> ·
+  <a href="https://github.com/alrobles/xbioclim-site">GitHub</a><br>
+  <span>Data © Copernicus. Code MIT.</span>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
