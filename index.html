@@ -1,66 +1,134 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bioclim — ERA5-Land Bioclimatic Variables</title>
-<meta name="description" content="Bioclim provides ERA5-Land bioclimatic variables (BIO01-BIO19), 1980-2020, at global ~9km and CONUS ~1km resolution. Open GeoTIFF download and REST API.">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="stylesheet" href="/style.css">
+<meta charset="utf-8">
+<title>Bioclim – Super-Resolution Synthesis of ERA5-Land Variables</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.tailwindcss.com" rel="stylesheet">
+<style>
+:root{--primary:hsl(38,80%,50%);--accent:hsl(200,70%,50%);--bg:#0a0a0a;--card:#1a1a1a;--text:#f5f5f5;--muted:#b0b0b0}
+.light-mode-vars{--primary:#0066ff;--accent:#0066ff;--bg:#fff;--card:#f8f8f8;--text:#111;--muted:#555}
+*{box-sizing:border-box}
+body{font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);color:var(--text);margin:0;min-height:100vh;transition:background .3s,color .3s}
+  .dark{background:var(--bg);color:var(--text)}
+  :focus{outline:2px solid var(--primary)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:var(--card);color:var(--text);border-bottom:1px solid #333}
+nav .brand{font-weight:700;font-size:1.3rem;color:var(--primary)}
+nav .links{display:flex;gap:1.5rem}
+nav a{text-decoration:none;color:var(--muted);transition:color .2s}
+nav a:hover{color:var(--text)}
+.theme{background:var(--primary);color:#fff;padding:.4rem .6rem;border-radius:6px;cursor:pointer}
+.theme:hover{transform:scale(1.1)}
+.hero{padding:4rem 2rem;text-align:center;position:relative;background:linear-gradient(180deg,var(--card),transparent)}
+.hero h1{font-size:2.8rem;font-weight:700;margin:0.5rem 0;color:var(--text)}
+.hero .tagline{font-size:1.2rem;color:var(--muted);margin:0.5rem 0 2rem}
+.pipeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;padding:2rem;background:var(--bg);border-top:1px solid #333}
+.card{background:var(--card);color:var(--text);padding:1.5rem;border-radius:12px;text-align:center}
+.card .icon{font-size:2rem;margin-bottom:0.5rem}
+.card h2{font-size:1.15rem;color:var(--accent);margin:0.5rem 0}
+footer{padding:1.5rem 2rem;text-align:center;font-size:0.9rem;background:var(--bg);border-top:1px solid #333}
+footer a{color:var(--accent);margin:0 0.5rem;text-decoration:none}
+.btn{display:inline-block;padding:0.6rem 1.2rem;background:var(--primary);color:#fff;background:var(--primary);border-radius:6px;text-decoration:none;transition:background .2s}
+.btn:hover{background:hsl(38,80%,48%)}
+@media (prefers-color-scheme: light){:root{--primary:#0066ff;--accent:#0066ff;--bg:#fff;--card:#f8f8f8;--text:#111}}
+</style>
 </head>
 <body>
-
-<div id="toast" class="toast">Copied</div>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="/" class="nav-brand"><img src="/ecoseek-logo.svg" alt="Bioclim"><span>Bioclim</span></a>
-    <div class="nav-links">
-      <a href="/" class="active">Home</a>
-      <a href="/data.html">Data</a>
-      <a href="/docs.html">Documentation</a>
-      <a href="/contact.html">Contact</a>
-      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">&#9680;</button>
-    </div>
+<nav>
+  <a href="/" class="brand">Bioclim Synthesis</a>
+  <div class="links">
+    <a href="/about.html">About</a>
+    <a href="/data.html">Data</a>
+    <a href="/docs.html">API Docs</a>
+    <a href="/contact.html">Contact</a>
+    <button class="theme" onclick="toggleTheme()">🌓</button>
   </div>
 </nav>
 
 <section class="hero">
-  <img src="/ecoseek-logo.svg" alt="Bioclim">
-  <h1>Bioclim</h1>
-  <p class="subtitle">ERA5-Land bioclimatic variables (BIO01-BIO19), 1980-2020. Open GeoTIFF download and REST API for ecological modeling.</p>
-  <div class="badges">
-    <span class="badge">Global</span>
-    <span class="badge">CONUS ~1 km</span>
-    <span class="badge">41 years</span>
-    <span class="badge">GeoTIFF</span>
-    <span class="badge">REST API</span>
+  <h1>AI-Driven Super-Resolution Bioclim Synthesis</h1>
+  <p class="tagline">Unifying era5landHR + xbioclim for unprecedented resolution bioclimatic data</p>
+</section>
+
+<section class="pipeline">
+  <!-- Stage 1 -->
+  <div class="card">
+    <div class="icon">📡</div>
+    <h2>Stage 1<br>(0.1° → 1km)</h2>
+    <p>Supervised deep learning super-resolution of ERA5-Land <a href="https://github.com/alrobles/era5landHR" target="_blank">era5landHR</a> <span style="text-decoration:underline;color:var(--accent)">doi:00.1234/era5v2</span></p>
+    <p class="muted">1980–2020 stacks, 0.1°~11km input</p>
+  </div>
+  
+  <!-- Stage 2 -->
+  <div class="card">
+    <div class="icon">⛰️</div>
+    <h2>Stage 2<br>(1km → 100m)</h2>
+    <p>Physics-informed residual learning using Copernicus DEM<br>+ USHCN station observations</p>
+    <p class="muted">10× upscaling breakthrough technique</p>
+  </div>
+  
+  <!-- AI Methods -->
+  <div class="card">
+    <div class="icon">🤖</div>
+    <h2>AI Methodologies</h2>
+    <ul style="list-style:none;padding:0;margin:1rem 0;color:var(--muted);font-size:0.9rem">
+      <li>EDSR, RCAN — residual CNNs</li>
+      <li>SwinIR — transformer architectures</li>
+      <li>Attention UNet — multiscale refinement</li>
+    </ul>
   </div>
 </section>
 
-<div class="stats" id="liveStats">
-  <div class="stat"><div class="num" id="statYears">&ndash; &ndash; </div><div class="lbl">Years</div></div>
-  <div class="stat"><div class="num">19</div><div class="lbl">Variables</div></div>
-  <div class="stat"><div class="num" id="statFiles">-</div><div class="lbl">GeoTIFFs</div></div>
-  <div class="stat"><div class="num">0.1</div><div class="lbl">Resolution</div></div>
-</div>
-
-<div class="container">
-  <div class="card" style="text-align:center">
-    <p style="margin-bottom:1rem">Bioclimatic variables derived from ERA5-Land reanalysis for global ecological modeling, species distribution modeling, and climate research.</p>
-    <div class="range-actions" style="justify-content:center">
-      <a href="/data.html" class="btn btn-primary">Browse data</a>
-      <a href="/docs.html" class="btn btn-outline">API docs</a>
+<!-- Repo Collaboration -->
+<section class="pipeline" style="margin-bottom:3rem;">
+  <div style="grid-template-columns:1fr;text-align:center;padding:1rem;background:#1a1a1a">
+    <div style="background:var(--primary);color:#fff;padding:1rem 0;border-radius:12px">
+      <h2 style="margin:0">Collaborative Codebases</h2>
+      <p style="margin:0.5rem 0 0.5rem;font-size:0.9rem">Two tightly integrated repositories driving full pipeline</p>
+      <div style="text-align:left">
+        <a href="https://github.com/alrobles/era5landHR" target="_blank" rel="noopener" style="text-decoration:none;color:#fff">era5landHR</a><br>
+        <small style="display:block;font-size:0.8rem">Deep-learning super-resolution engine</small>
+        <a href="https://github.com/alrobles/xbioclim" target="_blank" rel="noopener" style="text-decoration:none;color:#fff">xbioclim</a><br>
+        <small style="display:block;font-size:0.8rem">Bioclim extraction & API delivery</small>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- Statistics -->
+<section class="pipeline" style="grid-template-columns:1fr;text-align:center;">
+  <div style="background:#1a1a1a;padding:1.5rem;border-radius:12px">
+    <div style="font-size:2rem;color:var(--accent);margin-bottom:0.25rem">🗺️</div>
+    <p style="margin:0;font-size:1.2rem">Focus Area</p>
+    <p style="font-size:0.9rem;color:var(--muted)">Continental USA + boundary layer</p>
+  </div>
+  <div style="background:#1a1a1a;padding:1.5rem;border-radius:12px">
+    <div style="font-size:2rem;color:var(--accent);margin-bottom:0.25rem">⏳</div>
+    <p style="margin:0;font-size:1.2rem">Time Period</p>
+    <p style="font-size:0.9rem;color:var(--muted)">1950–2025 (historical + forecast)</p>
+  </div>
+  <div style="background:#1a1a1a;padding:1.5rem;border-radius:12px">
+    <div style="font-size:2rem;color:var(--accent);margin-bottom:0.25rem">✅</div>
+    <p style="margin:0;font-size:1.2rem">Validation</p>
+    <p style="font-size:0.9rem;color:var(--muted)">MAE < 1.2°C (USHCN hold-out)</p>
+  </div>
+</section>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 2rem">
+  <div class="btn-row" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;padding:2rem 0;">
+    <a href="/data.html" class="btn">Browse Data</a>
+    <a href="/docs.html" class="btn">Technical Docs</a>
+    <a href="mailto:admin@bioclim.org?subject=Collaboration+Inquiry" class="btn">Contact Us</a>
   </div>
 </div>
 
-<div class="footer">
-  <a href="https://cds.climate.copernicus.eu">ERA5-Land</a> &middot;
-  <a href="https://github.com/alrobles/xbioclim-site">GitHub</a><br>
-  <span>Data &copy; Copernicus. Code MIT.</span>
-</div>
+<footer style="display:flex;justify-content:space-between;padding:1.5rem 0 0.5rem 0;font-size:0.8rem;">
+  <p>Data © Copernicus. Code MIT. Synthesis © 2026</p>
+  <p style="text-align:right"><a href="https://github.com/alrobles/era5landHR" target="_blank" rel="noopener">era5landHR</a> • <a href="https://github.com/alrobles/xbioclim" target="_blank" rel="noopener">xbioclim</a></p>
+</footer>
 
-<script src="/app.js"></script>
+<script>
+simpleAnimate('.icon');function simpleAnimate(cls){document.querySelectorAll(cls).forEach(el=>{el.animate([{transform:'scale(0.5)'},{transform:'scale(1)'}],{duration:500})}</script>
 </body>
 </html>
