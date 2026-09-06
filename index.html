@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>xbioclim — Open bioclimatic data at working resolution</title>
-<meta name="description" content="xbioclim turns monthly climate data into transparent, reproducible bioclimatic variables and open GeoTIFF products.">
+<title>xbioclim — Open, station-informed bioclimatic layers</title>
+<meta name="description" content="xbioclim publishes open BIOCLIM layers from the XCLIM station-informed deep-learning downscaling pipeline.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -15,70 +16,98 @@
       <span>xbioclim</span>
     </a>
     <div class="nav-links">
+      <a href="#method">Method</a>
       <a href="#products">Products</a>
-      <a href="#packages">R packages</a>
       <a href="/data.html">Data</a>
-      <a href="/docs.html">Docs</a>
+      <a href="/docs.html">Use</a>
       <a href="https://github.com/alrobles/xbioclim" target="_blank" rel="noopener">GitHub</a>
-      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">☼</button>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle theme">◐</button>
     </div>
   </div>
 </nav>
 
 <header class="hero hero-home">
   <div class="hero-grid" aria-hidden="true"></div>
-  <div class="eyebrow">Climate data · open methods · reproducible outputs</div>
-  <h1>Bioclimatic variables<br><span>you can inspect, cite, and use.</span></h1>
-  <p class="subtitle">xbioclim connects efficient R and C++ computation with openly served climate layers, from monthly inputs to BIO01–BIO19.</p>
+  <div class="eyebrow">XCLIM · open climate downscaling · BIO01–BIO19</div>
+  <h1>Climate layers for<br><span>ecological questions.</span></h1>
+  <p class="subtitle">xbioclim is the public data layer for XCLIM: an open, station-informed deep-learning pipeline for monthly climate time series and derived bioclimatic variables.</p>
   <div class="hero-actions">
-    <a class="btn btn-primary" href="/data.html">Explore the data</a>
-    <a class="btn btn-outline" href="#packages">Meet the toolkit</a>
+    <a class="btn btn-primary" href="/data.html">Explore live data</a>
+    <a class="btn btn-outline" href="#method">How it works</a>
   </div>
-  <div class="hero-note"><span class="pulse"></span> Now serving CONUS 1/120° layers for 1986–2025</div>
+  <div class="hero-note"><span class="pulse"></span> CONUS 1/120° BIO layers live for 1986–2025</div>
 </header>
 
 <section class="stats" aria-label="xbioclim at a glance">
   <div class="stat"><div class="num">19</div><div class="lbl">BIO variables</div></div>
-  <div class="stat"><div class="num">1/120°</div><div class="lbl">Working resolution</div></div>
-  <div class="stat"><div class="num">1950–2025</div><div class="lbl">9 km historical archive</div></div>
-  <div class="stat"><div class="num">Range</div><div class="lbl">HTTP + Terra ready</div></div>
+  <div class="stat"><div class="num">1/120°</div><div class="lbl">CONUS working grid</div></div>
+  <div class="stat"><div class="num">1950–2025</div><div class="lbl">9 km global archive</div></div>
+  <div class="stat"><div class="num">1M+</div><div class="lbl">station-month checks</div></div>
 </section>
 
 <main>
+  <section id="method" class="container section">
+    <div class="section-head">The paper in three steps</div>
+    <h2 class="section-title">Open methods, not a black box.</h2>
+    <p class="lede">The XCLIM paper describes a reproducible pipeline designed to retain year-to-year climate variability instead of publishing only climatological normals.</p>
+    <div class="method-grid">
+      <article class="method-card">
+        <span class="step">01</span>
+        <h3>Station-informed targets</h3>
+        <p>ERA5-Land fields are combined with station residuals to build transparent high-resolution targets without using CHELSA as training data.</p>
+      </article>
+      <article class="method-card">
+        <span class="step">02</span>
+        <h3>Deep-learning downscaling</h3>
+        <p>An enhanced EDSR model learns monthly 1/120° temperature and precipitation fields from coarse climate inputs and terrain.</p>
+      </article>
+      <article class="method-card">
+        <span class="step">03</span>
+        <h3>Year-specific correction</h3>
+        <p>A post-inference 3D-IDW station correction anchors each year to observations before BIO01–BIO19 are computed.</p>
+      </article>
+    </div>
+    <div class="paper-note">
+      <span class="paper-label">Read the backbone</span>
+      <span>XCLIM: an open, station-informed deep-learning pipeline for 1/120° monthly climate time series (1950–2025).</span>
+      <a class="text-link" href="https://github.com/alrobles/era5landHR/blob/main/papers/second_draft.tex" target="_blank" rel="noopener">Open the preprint →</a>
+    </div>
+  </section>
+
   <section id="products" class="container section">
-    <div class="section-head">The atlas</div>
-    <h2 class="section-title">From climate fields to usable biology.</h2>
-    <p class="lede">Every product is a plain, documented raster layer. Download one variable with <code>curl</code>, open it directly from its URL in <code>terra</code>, or generate a reproducible batch script.</p>
+    <div class="section-head">The live atlas</div>
+    <h2 class="section-title">Plain GeoTIFFs, ready for analysis.</h2>
+    <p class="lede">Every layer has a stable URL, explicit variable name and HTTP Range support. Use <code>curl</code>, open the URL directly in <code>terra</code>, or generate a batch script.</p>
     <div class="grid-3">
       <article class="feature-card">
-        <span class="feature-icon">01</span>
-        <h3>9 km global archive</h3>
-        <p>Long-running BIO01–BIO19 coverage from 1950–2025 for broad-scale ecological modelling and historical comparison.</p>
+        <span class="feature-icon">9k</span>
+        <h3>Global archive</h3>
+        <p>Global 9 km BIO01–BIO19 layers spanning 1950–2025 for broad-scale ecological modelling and historical comparison.</p>
         <a class="text-link" href="/data.html">Browse coverage →</a>
       </article>
       <article class="feature-card feature-card-accent">
         <span class="feature-icon">1k</span>
-        <h3>1 km CONUS layers</h3>
-        <p>Independent GeoTIFFs for 1986–2025, served with HTTP Range support for selective, low-friction access.</p>
+        <h3>CONUS 1 km layers</h3>
+        <p>Independent GeoTIFFs for 1986–2025, served directly for selective access and reproducible station-scale work.</p>
         <a class="text-link" href="https://data.xbioclim.org/api/years?dataset=1km" target="_blank" rel="noopener">View the API →</a>
       </article>
       <article class="feature-card">
-        <span class="feature-icon">↗</span>
-        <h3>Reproducible by default</h3>
-        <p>Transparent endpoints, explicit variable names, open source computation, and examples for R, Python, and shell clients.</p>
-        <a class="text-link" href="/docs.html">Read the docs →</a>
+        <span class="feature-icon">R</span>
+        <h3>R-facing toolkit</h3>
+        <p>The companion xbioclim package computes BIOCLIM variables from monthly rasters with a native, raster-aware core.</p>
+        <a class="text-link" href="#toolkit">Meet the toolkit →</a>
       </article>
     </div>
   </section>
 
-  <section id="packages" class="container section section-packages">
+  <section id="toolkit" class="container section section-packages">
     <div class="section-head">The toolkit</div>
-    <h2 class="section-title">A small stack for serious climate work.</h2>
+    <h2 class="section-title">One public layer, two development paths.</h2>
     <div class="package-grid">
       <article class="package-card package-card-main">
-        <div class="package-top"><span class="package-kind">R package</span><span class="package-version">main line</span></div>
+        <div class="package-top"><span class="package-kind">R package</span><span class="package-version">stable</span></div>
         <h3>xbioclim</h3>
-        <p>Compute the 19 standard bioclimatic variables from monthly climate data, with a high-performance native core and raster-aware workflows.</p>
+        <p>Compute the 19 standard bioclimatic variables from monthly climate data with a high-performance native core and raster-aware workflows.</p>
         <div class="package-links">
           <a class="btn btn-primary" href="https://github.com/alrobles/xbioclim" target="_blank" rel="noopener">Open xbioclim</a>
           <a class="text-link" href="https://github.com/alrobles/xbioclim#readme" target="_blank" rel="noopener">Read the README →</a>
@@ -87,20 +116,17 @@
       <article class="package-card">
         <div class="package-top"><span class="package-kind">R package</span><span class="package-version">development</span></div>
         <h3>xbioclim-devel</h3>
-        <p>The working line for new algorithms, performance experiments, and API changes before they move into the stable package.</p>
+        <p>The working line for new algorithms, performance experiments and API changes before they move into the stable package.</p>
         <a class="text-link" href="https://github.com/alrobles/xbioclim-devel" target="_blank" rel="noopener">Follow development →</a>
       </article>
-    </div>
-    <div class="method-strip">
-      <span>Monthly climate inputs</span><b>→</b><span>R / C++ computation</span><b>→</b><span>BIO01–BIO19</span><b>→</b><span>Open GeoTIFF delivery</span>
     </div>
   </section>
 
   <section class="container section callout">
     <div>
-      <div class="section-head">Use it in your workflow</div>
-      <h2 class="section-title">One URL from discovery to analysis.</h2>
-      <p>Start with the API, select a year and variable, then let your existing geospatial tools do the rest.</p>
+      <div class="section-head">Start with one URL</div>
+      <h2 class="section-title">Discovery to analysis in one line.</h2>
+      <p>Select a year and variable from the API, then let your existing geospatial tools do the rest.</p>
     </div>
     <pre class="terminal"><code>library(terra)
 bio01 &lt;- rast("https://data.xbioclim.org/api/download/1987/bio01_1987.tif?dataset=1km")
@@ -109,8 +135,8 @@ plot(bio01)</code></pre>
 </main>
 
 <footer class="footer">
-  <span>xbioclim · open bioclimatic computing</span>
-  <span><a href="https://github.com/alrobles/xbioclim" target="_blank" rel="noopener">GitHub</a> · <a href="/contact.html">Contact</a> · Data © Copernicus</span>
+  <span>xbioclim · the public face of XCLIM</span>
+  <span><a href="/docs.html">Use the data</a> · <a href="https://github.com/alrobles/era5landHR" target="_blank" rel="noopener">Paper &amp; pipeline</a> · Data © Copernicus</span>
 </footer>
 
 <script src="/app.js"></script>
