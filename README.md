@@ -1,18 +1,19 @@
-# Bioclim — Site
+# xbioclim.org — Development Site
 
-Institutional multi-page static site for Bioclim, the ERA5-Land bioclimatic
-variable service. Served via **Docker + nginx** at `https://xbioclim.org`;
+Development branch for the rebranded xbioclim.org site: an open, reproducible
+home for bioclimatic computation, datasets, and the xbioclim R/C++ toolkit.
+Served via **Docker + nginx** at `https://xbioclim.org`;
 the REST API and GeoTIFF downloads live on `https://data.xbioclim.org`
 (see `alrobles/ecoseek-bioclim`).
 
 ## Structure
 
-- `index.html` — landing / hero
+- `index.html` — xbioclim brand landing page
 - `data.html` — variables, browse & batch download
 - `docs.html` — REST API endpoints & client examples
 - `contact.html` — project links
 - `app.js` — frontend logic, talks to `https://data.xbioclim.org`
-- `style.css` — shared styles (dark-mode toggle)
+- `style.css` — shared styles and xbioclim visual system (dark-mode toggle)
 - `Dockerfile` + `nginx.conf` — static server (gzip, no-cache)
 - `docker-compose.yml` — container on `127.0.0.1:8660`
 
@@ -23,6 +24,16 @@ cd /home/reumanlab/dev/xbioclim-site
 docker compose up -d --build
 curl -s 127.0.0.1:8660 | head
 ```
+
+The development site is intentionally separate from the deployed
+`alrobles/xbioclim-site` repository. Review changes here before promoting them
+to production.
+
+## Brand links
+
+- Stable toolkit: https://github.com/alrobles/xbioclim
+- Development toolkit: https://github.com/alrobles/xbioclim-devel
+- Data API: https://data.xbioclim.org
 
 ## Cloudflare Tunnel
 
