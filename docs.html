@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documentation — Bioclim</title>
+<title>Use the data — xbioclim</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/style.css">
 </head>
@@ -13,21 +13,22 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-brand"><img src="/ecoseek-logo.svg" alt="Bioclim"><span>Bioclim</span></a>
+    <a href="/" class="nav-brand"><span class="brand-mark" aria-hidden="true">x</span><span>xbioclim</span></a>
     <div class="nav-links">
       <a href="/">Home</a>
       <a href="/data.html">Data</a>
-      <a href="/docs.html" class="active">Documentation</a>
-      <a href="/contact.html">Contact</a>
+      <a href="/docs.html" class="active">Use</a>
+      <a href="/contact.html">About</a>
       <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">◐</button>
     </div>
   </div>
 </nav>
 
 <div class="container">
-  <div class="section-head">Documentation</div>
-  <h2 class="section-title">REST API &amp; clients</h2>
+  <div class="section-head">Use the data</div>
+  <h2 class="section-title">One endpoint, familiar tools.</h2>
   <div class="card">
+    <p>Every published layer is a standalone GeoTIFF. The API describes the inventory; the file URL is the data contract.</p>
     <h3>API endpoints</h3>
     <div class="api-endpoint"><span class="m">GET</span><span class="ep">/api/years</span></div>
     <div class="api-endpoint"><span class="m">GET</span><span class="ep">/api/variables</span></div>
@@ -48,8 +49,8 @@
 </div>
 
 <div class="footer">
-  <a href="https://cds.climate.copernicus.eu">ERA5-Land</a> ·
-  <a href="https://github.com/alrobles/xbioclim-site">GitHub</a><br>
+  <a href="https://github.com/alrobles/era5landHR">Paper &amp; pipeline</a> ·
+  <a href="https://github.com/alrobles/xbioclim">R package</a><br>
   <span>Data © Copernicus. Code MIT.</span>
 </div>
 

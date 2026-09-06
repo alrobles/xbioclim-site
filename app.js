@@ -113,7 +113,7 @@ function setDataset(d) {
   const b1 = $id('ds1');
   if (b9) b9.classList.toggle('dataset-btn-active', d === '9km');
   if (b1) b1.classList.toggle('dataset-btn-active', d === '1km');
-  updateRange();
+  loadStats();
 }
 
 /* Range / curl */
