@@ -35,9 +35,9 @@ Object.keys(BIOCLIM_VARS).forEach(function (k) {
 
 let dataset = '9km';
 let years = [];
-let yrMin = 1980;
-let yrMax = 2020;
-let totalFiles = 779;
+let yrMin = 1950;
+let yrMax = 2025;
+let totalFiles = 1444;
 
 function $id(id) { return document.getElementById(id); }
 function dsQs(sep) { return dataset === '9km' ? '' : sep + 'dataset=' + dataset; }
@@ -90,8 +90,16 @@ async function loadStats() {
     if (re) { re.min = yrMin; re.max = yrMax; re.value = yrMax; }
     updateRange();
   } catch (e) {
-    if ($id('statYears')) $id('statYears').textContent = '41';
-    if ($id('statFiles')) $id('statFiles').textContent = '779';
+    const fallbackMin = dataset === '1km' ? 1986 : 1950;
+    const fallbackMax = 2025;
+    const fallbackYears = fallbackMax - fallbackMin + 1;
+    if ($id('statYears')) $id('statYears').textContent = fallbackYears;
+    if ($id('statFiles')) $id('statFiles').textContent = fallbackYears * 19;
+    const rs = $id('rangeStart');
+    const re = $id('rangeEnd');
+    if (rs) { rs.min = fallbackMin; rs.max = fallbackMax; rs.value = fallbackMin; }
+    if (re) { re.min = fallbackMin; re.max = fallbackMax; re.value = fallbackMax; }
+    updateRange();
   }
 }
 
@@ -142,7 +150,9 @@ function downloadScript(fmt) {
 }
 function goToYear() {
   const y = $id('yearInput') ? $id('yearInput').value : '';
-  if (y && y >= yrMin && y <= yrMax) window.open(API + '/' + y + '/' + dsQs('?'), '_blank');
+  if (y && y >= yrMin && y <= yrMax) {
+    window.open(API + '/api/download/' + y + '/bio01_' + y + '.tif' + dsQs('?'), '_blank');
+  }
 }
 
 /* Client docs */
